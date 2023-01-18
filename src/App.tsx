@@ -20,7 +20,7 @@ function App() {
   };
   const [isOpenAddDeckDialog, setIsOpenAddDeckDialog] = useState(false);
   const updateDeck = (name: string, value: IDeck) => {
-    const newDecks = decks.map((deck) => {
+    const newDecks = decks.map((deck: IDeck) => {
       if (deck.name === name) {
         return { ...deck, ...value };
       }
