@@ -6,11 +6,6 @@ import { useState } from "react";
 import { Context, IDeck } from "./Context";
 import { DeckList } from "./DeckList";
 import { AddDeckDialog } from "./AddDeckDialog";
-import ReactGA from "react-ga";
-
-const GA_TRACKING = "G-KP4BP03E1B";
-
-ReactGA.initialize(GA_TRACKING);
 
 const actions = [{ icon: <AddIcon />, name: "Create Deck" }];
 const emptyDecks: IDeck[] = [];
