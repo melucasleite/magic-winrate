@@ -28,10 +28,18 @@ function App() {
     });
     setDecksPersist(newDecks);
   };
+  const deleteDeck = (name: string) => {
+    const objWithIdIndex = decks.findIndex((deck: IDeck) => deck.name === name);
+    if (objWithIdIndex > -1) {
+      decks.splice(objWithIdIndex, 1);
+    }
+    setDecksPersist([...decks]);
+  };
   const value = {
     decks,
     setDecks: setDecksPersist,
     updateDeck,
+    deleteDeck,
     isOpenAddDeckDialog,
     setIsOpenAddDeckDialog,
   };
