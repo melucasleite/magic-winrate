@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, Button, CardActionArea } from "@mui/material";
+import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Context, IDeck } from "./Context";
@@ -16,6 +17,12 @@ export const Deck = ({ name, w, l }: IDeck) => {
   };
   const onWin = () => {
     updateDeck(name, { name, w: w + 1, l });
+  };
+  const onLossRemove = () => {
+    updateDeck(name, { name, w, l: l - 1 > 0 ? l - 1 : 0 });
+  };
+  const onWinRemove = () => {
+    updateDeck(name, { name, w: w - 1 > 0 ? w - 1 : 0, l });
   };
   const onDelete = () => {
     deleteDeck(name);
@@ -47,6 +54,21 @@ export const Deck = ({ name, w, l }: IDeck) => {
           onClick={onWin}
         >
           Win <AddIcon />
+        </Button>
+        <br></br>
+        <Button
+          variant={"outlined"}
+          sx={{ marginRight: "10px" }}
+          onClick={onLossRemove}
+        >
+          Loss <RemoveIcon />
+        </Button>
+        <Button
+          variant={"outlined"}
+          sx={{ marginRight: "10px" }}
+          onClick={onWinRemove}
+        >
+          Win <RemoveIcon />
         </Button>
         <br></br>
         <Button
