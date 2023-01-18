@@ -11,7 +11,13 @@ const actions = [{ icon: <AddIcon />, name: "Create Deck" }];
 const emptyDecks: IDeck[] = [];
 
 function App() {
-  const [decks, setDecks] = useState(emptyDecks);
+  const [decks, setDecks] = useState(
+    JSON.parse(localStorage.getItem("decks") || "") || []
+  );
+  const setDecksPersist = (value: any) => {
+    localStorage.setItem("decks", JSON.stringify(value));
+    setDecks(value);
+  };
   const [isOpenAddDeckDialog, setIsOpenAddDeckDialog] = useState(false);
   const updateDeck = (name: string, value: IDeck) => {
     const newDecks = decks.map((deck) => {
@@ -20,11 +26,11 @@ function App() {
       }
       return { ...deck };
     });
-    setDecks(newDecks);
+    setDecksPersist(newDecks);
   };
   const value = {
     decks,
-    setDecks,
+    setDecks: setDecksPersist,
     updateDeck,
     isOpenAddDeckDialog,
     setIsOpenAddDeckDialog,
