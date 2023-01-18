@@ -12,7 +12,7 @@ const emptyDecks: IDeck[] = [];
 
 function App() {
   const [decks, setDecks] = useState(
-    JSON.parse(localStorage.getItem("decks") || "") || []
+    JSON.parse(localStorage.getItem("decks") || "[]") || []
   );
   const setDecksPersist = (value: any) => {
     localStorage.setItem("decks", JSON.stringify(value));
